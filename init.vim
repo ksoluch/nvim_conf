@@ -100,7 +100,7 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-let g:clang_format#command = "clang-format-3.8"
+"let g:clang_format#command = "clang-format-3.8"
 let g:clang_format#code_style = "llvm"
 let g:clang_format#style_options = {
 \ "BreakBeforeBraces": "Custom",
@@ -143,8 +143,8 @@ let g:clang_format#style_options = {
 vmap <silent>= :ClangFormat<CR>
 nmap <silent><leader>= :<C-u>ClangFormat<CR>
 
-nnoremap <leader>ba :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
+nnoremap <leader>j :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>h :call ToggleLocationList()<CR>
 
 " s: Find this C symbol 
 nnoremap  <leader>bs :call CscopeFind('s', expand('<cword>'))<CR> 
@@ -162,3 +162,13 @@ nnoremap  <leader>be :call CscopeFind('e', expand('<cword>'))<CR>
 nnoremap  <leader>bf :call CscopeFind('f', expand('<cword>'))<CR> 
 " i: Find files #including this file 
 nnoremap  <leader>bi :call CscopeFind('i', expand('<cword>'))<CR> 
+
+nnoremap  <leader>5 :e %<CR>
+
+"Neovim terminal
+nnoremap  <leader>7 :terminal<CR>
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+tnoremap <Esc> <C-\><C-n>

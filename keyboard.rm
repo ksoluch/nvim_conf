@@ -1,0 +1,3 @@
+sudo vi /etc/default/keyboard
+XKBOPTIONS="ctrl:nocaps"
+sudo dpkg-reconfigure keyboard-configuration
