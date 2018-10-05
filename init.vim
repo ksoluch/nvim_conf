@@ -41,6 +41,7 @@ set hlsearch
 set relativenumber
 set foldmethod=indent
 set foldlevel=10
+set cursorline
 
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
