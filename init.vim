@@ -32,8 +32,8 @@ set hidden
 set wildignore+=*/obj/**
 set wildignore+=*/out/**
 set expandtab
-set tabstop=3
-set shiftwidth=3
+set tabstop=2
+set shiftwidth=2
 set number
 set clipboard=unnamed
 set nowrap
@@ -116,7 +116,7 @@ let g:clang_format#style_options = {
 \    "BeforeCatch": "true",
 \    "BeforeElse": "true",
 \ },
-\ "TabWidth" : "3",
+\ "TabWidth" : "2",
 \ "UseTab" : "Never",
 \ "MaxEmptyLinesToKeep" : "1",
 \ "BinPackArguments" : "true",
@@ -130,7 +130,7 @@ let g:clang_format#style_options = {
 \ "Standard" : "Cpp03",
 \ "ColumnLimit" : "130",
 \ "IndentCaseLabels" : "false",
-\ "IndentWidth" : "3",
+\ "IndentWidth" : "2",
 \ "PenaltyBreakString" : "1000",
 \ "AlignAfterOpenBracket" : "Align",
 \ "AlignConsecutiveAssignments" : "true",
