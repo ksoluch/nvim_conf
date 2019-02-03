@@ -18,7 +18,6 @@ Plug 'rhysd/vim-clang-format'
 Plug 'brookhong/cscope.vim'
 
 call plug#end()
-
 syntax on
 filetype plugin indent on
 
@@ -74,8 +73,8 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 nnoremap <C-x> <C-W>c
-nnoremap <silent>1 o<Esc><Esc>
-nnoremap <silent>2 O<Esc><Esc>
+nnoremap <silent>= o<Esc><Esc>
+nnoremap <silent>- O<Esc><Esc>
 nnoremap <silent><C-s> s<Esc><Esc>
 nnoremap <silent><leader>[ :vertical resize -5<CR>
 nnoremap <silent><leader>] :vertical resize +5<CR>
@@ -102,44 +101,7 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 "let g:clang_format#command = "clang-format-3.8"
-let g:clang_format#code_style = "llvm"
-let g:clang_format#style_options = {
-\ "BreakBeforeBraces": "Custom",
-\ "BraceWrapping": {
-\    "AfterClass": "false",
-\    "AfterControlStatement": "true",
-\    "AfterEnum": "true",
-\    "AfterFunction": "true",
-\    "AfterNamespace": "true",
-\    "AfterStruct": "true",
-\    "AfterUnion": "true",
-\    "BeforeCatch": "true",
-\    "BeforeElse": "true",
-\ },
-\ "TabWidth" : "2",
-\ "UseTab" : "Never",
-\ "MaxEmptyLinesToKeep" : "1",
-\ "BinPackArguments" : "true",
-\ "BinPackParameters" : "false",
-\ "AlwaysBreakTemplateDeclarations" : "true",
-\ "AllowShortIfStatementsOnASingleLine" : "false",
-\ "AllowShortCaseLabelsOnASingleLine" : "false",
-\ "AllowShortFunctionsOnASingleLine" : "None",
-\ "AllowShortBlocksOnASingleLine" : "false",
-\ "BreakBeforeBinaryOperators" : "All",
-\ "Standard" : "Cpp03",
-\ "ColumnLimit" : "130",
-\ "IndentCaseLabels" : "false",
-\ "IndentWidth" : "2",
-\ "PenaltyBreakString" : "1000",
-\ "AlignAfterOpenBracket" : "Align",
-\ "AlignConsecutiveAssignments" : "true",
-\ "AlignOperands" : "true",
-\ "AlignTrailingComments" : "true",
-\ "AlwaysBreakAfterDefinitionReturnType" : "TopLevel",
-\ "AlwaysBreakAfterReturnType" : "TopLevel",
-\ "AllowAllParametersOfDeclarationOnNextLine" : "false",
-\ }
+let g:clang_format#code_style = "Mozilla"
  
 vmap <silent>= :ClangFormat<CR>
 nmap <silent><leader>= :<C-u>ClangFormat<CR>
@@ -167,9 +129,10 @@ nnoremap  <leader>bi :call CscopeFind('i', expand('<cword>'))<CR>
 nnoremap  <leader>5 :e %<CR>
 
 "Neovim terminal
-nnoremap  <leader>7 :terminal<CR>
+nnoremap  <leader>7 :terminal<CR>a
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
-tnoremap <Esc> <C-\><C-n>
+tnoremap <C-o> <C-\><C-N>
+tnoremap <Esc> <C-\><C-N>
