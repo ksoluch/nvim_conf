@@ -42,14 +42,6 @@ set foldmethod=indent
 set foldlevel=10
 set cursorline
 
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-else
-   let &t_SI = "\<Esc>[5 q"
-   let &t_EI = "\<Esc>[2 q"
-endif
-
 nnoremap <silent><leader>0 : set norelativenumber<CR>
 nnoremap <silent><leader>9 : set relativenumber<CR>
 nnoremap <silent><leader>5 : set diffopt+=iwhite<CR>
@@ -126,6 +118,7 @@ nnoremap  <leader>bf :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file 
 nnoremap  <leader>bi :call CscopeFind('i', expand('<cword>'))<CR> 
 
+" refresh the content of the current file
 nnoremap  <leader>5 :e %<CR>
 
 "Neovim terminal
