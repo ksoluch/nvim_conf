@@ -41,6 +41,7 @@ set relativenumber
 set foldmethod=indent
 set foldlevel=10
 set cursorline
+set colorcolumn=80
 
 nnoremap <silent><leader>0 : set norelativenumber<CR>
 nnoremap <silent><leader>9 : set relativenumber<CR>
@@ -129,3 +130,13 @@ tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
 tnoremap <C-o> <C-\><C-N>
 tnoremap <Esc> <C-\><C-N>
+
+" Windows Linux Subsystem
+if !has("clipboard") && executable("clip.exe")
+    func! GetSelectedText()
+      normal gv"xy
+      let result = getreg("x")
+      return result
+    endfunc
+    noremap <silent><C-Ins> :call system('clip.exe', GetSelectedText())<CR>
+endif
