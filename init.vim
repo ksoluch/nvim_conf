@@ -58,9 +58,9 @@ nnoremap <silent><leader>B :CommandTBuffer<CR>
 nnoremap <silent><leader>w :CommandTLine<CR>
 nnoremap <silent><leader>W :CommandTTag<CR>
 nnoremap <silent><leader>f :CommandT<CR>
-nnoremap <silent><leader>A :Ack! --asm --cpp --cc <C-r><C-W><CR>
-nnoremap <leader>a :Ack! --asm --cpp --cc ""<Left>
-nnoremap <leader><C-a> :Ack! --asm --cpp --cc "<C-r><C-W>"<Left>
+nnoremap <silent><leader>A :Ack! --asm --cpp --cc --follow <C-r><C-W><CR>
+nnoremap <leader>a :Ack! --asm --cpp --cc --follow ""<Left>
+nnoremap <leader><C-a> :Ack! --asm --cpp --cc --follow "<C-r><C-W>"<Left>
 nnoremap <leader>t :TlistToggle<CR><C-h><C-h>
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
@@ -100,30 +100,6 @@ let g:clang_format#code_style = "Mozilla"
 vmap <silent>= :ClangFormat<CR>
 nmap <silent><leader>= :<C-u>ClangFormat<CR>
 
-if $CSCOPE_DB != ""
-  cs add $CSCOPE_DB
-endif
-
-nnoremap <leader>j :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>h :call ToggleLocationList()<CR>
-
-" s: Find this C symbol 
-nnoremap  <leader>bs mA:call CscopeFind('s', expand('<cword>'))<CR>
-" g: Find this definition 
-nnoremap  <leader>bg mA:call CscopeFind('g', expand('<cword>'))<CR>
-" d: Find functions called by this function 
-nnoremap  <leader>bd mA:call CscopeFind('d', expand('<cword>'))<CR>
-" c: Find functions calling this function 
-nnoremap  <leader>bc mA:call CscopeFind('c', expand('<cword>'))<CR>
-" t: Find this text string 
-nnoremap  <leader>bt mA:call CscopeFind('t', expand('<cword>'))<CR>
-" e: Find this egrep pattern 
-nnoremap  <leader>be mA:call CscopeFind('e', expand('<cword>'))<CR>
-" f: Find this file 
-nnoremap  <leader>bf mA:call CscopeFind('f', expand('<cword>'))<CR>
-" i: Find files #including this file 
-nnoremap  <leader>bi mA:call CscopeFind('i', expand('<cword>'))<CR>
-
 " refresh the content of the current file
 nnoremap  <leader>5 :e %<CR>
 
@@ -146,10 +122,4 @@ if !has("clipboard") && executable("clip.exe")
   noremap <silent><C-Ins> :call system('clip.exe', GetSelectedText())<CR>
 endif
 
-
-":ts or :tselect shows the list
-":tn or :tnext goes to the next tag in that list
-":tp or :tprev goes to the previous tag in that list
-":tf or :tfirst goes to the first tag of the list
-":tl or :tlast goes to the last tag of the list
-
+nnoremap <leader>m :ts<CR>
