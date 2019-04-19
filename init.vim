@@ -18,6 +18,13 @@ Plug 'rhysd/vim-clang-format'
 Plug 'brookhong/cscope.vim'
 
 call plug#end()
+
+func! GetSelectedText()
+  normal gv"xy
+  let result = getreg("x")
+  return result
+endfunc
+
 syntax on
 filetype plugin indent on
 
@@ -82,7 +89,7 @@ nnoremap <silent><leader>R :tabe %<CR>
 nnoremap <silent><leader>V :vsplit %<CR>
 nnoremap <silent><leader>S :split %<CR>
 nnoremap <silent><leader>D :g/<C-r><C-W><CR>
-nnoremap <leader>d :g/
+nmap <leader>d :g/
 nnoremap * *N
 nnoremap <silent><leader>* :nohlsearch<CR>
 nnoremap <leader><leader> <C-^>
@@ -114,12 +121,11 @@ tnoremap <Esc> <C-\><C-N>
 
 " Windows Linux Subsystem
 if !has("clipboard") && executable("clip.exe")
-  func! GetSelectedText()
-    normal gv"xy
-    let result = getreg("x")
-    return result
-  endfunc
   noremap <silent><C-Ins> :call system('clip.exe', GetSelectedText())<CR>
 endif
 
+"ctags: to jump to the c header.
+nnoremap <leader>h :tag <C-r><C-W>.h<CR>
+
 nnoremap <leader>m :ts<CR>
+
