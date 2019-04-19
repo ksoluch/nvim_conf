@@ -47,9 +47,10 @@ set nowrap
 set hlsearch
 set relativenumber
 set foldmethod=indent
-set foldlevel=10
+set foldlevel=1000
 set cursorline
 set colorcolumn=80
+set tw=80
 
 nnoremap <silent><leader>0 : set norelativenumber<CR>
 nnoremap <silent><leader>9 : set relativenumber<CR>
@@ -94,7 +95,7 @@ nnoremap * *N
 nnoremap <silent><leader>* :nohlsearch<CR>
 nnoremap <leader><leader> <C-^>
 nnoremap <leader>l1 :set foldlevel=1<CR>
-nnoremap <leader>l2 :set foldlevel=100<CR>
+nnoremap <leader>l2 :set foldlevel=1000<CR>
 nmap <leader>c <Plug>(Scalpel)
 vmap <leader>y "+y
 map /  <Plug>(incsearch-forward)
@@ -124,8 +125,4 @@ if !has("clipboard") && executable("clip.exe")
   noremap <silent><C-Ins> :call system('clip.exe', GetSelectedText())<CR>
 endif
 
-"ctags: to jump to the c header.
-nnoremap <leader>h :tag <C-r><C-W>.h<CR>
-
 nnoremap <leader>m :ts<CR>
-
