@@ -52,12 +52,14 @@ set cursorline
 set colorcolumn=80
 set tw=80
 
+let @h=getcwd()
+
 nnoremap <silent><leader>0 : set norelativenumber<CR>
 nnoremap <silent><leader>9 : set relativenumber<CR>
 nnoremap <silent><leader>5 : set diffopt+=iwhite<CR>
-nnoremap <silent><leader>p :let @* = expand("%:p")<CR>
-nnoremap <silent><leader>P :let @* = expand("%:t")<CR>
-nnoremap <silent><leader><C-p> :let @* = expand("%:p:h")<CR>
+nnoremap <silent><leader>p :call system('clip.exe', expand("%:p"))<CR>
+nnoremap <silent><leader>P :call system('clip.exe', expand("%:p"))<CR>
+nnoremap <silent><leader><C-p> :call system('clip.exe', expand("%:p:h"))<CR>
 nnoremap <silent><leader>1 :w!<CR>
 nnoremap <silent><leader>3 :q<CR>
 nnoremap <silent><leader>n :NERDTreeToggle<CR>
@@ -66,9 +68,9 @@ nnoremap <silent><leader>B :CommandTBuffer<CR>
 nnoremap <silent><leader>w :CommandTLine<CR>
 nnoremap <silent><leader>W :CommandTTag<CR>
 nnoremap <silent><leader>f :CommandT<CR>
-nnoremap <silent><leader>A :Ack! --asm --cpp --cc --follow <C-r><C-W><CR>
-nnoremap <leader>a :Ack! --asm --cpp --cc --follow ""<Left>
-nnoremap <leader><C-a> :Ack! --asm --cpp --cc --follow "<C-r><C-W>"<Left>
+nnoremap <silent><leader>A :Ack! --asm --cpp --cc --pgen --follow <C-r><C-W><CR>
+nnoremap <leader>a :Ack! --asm --cpp --cc --pgen --follow ""<Left>
+nnoremap <leader><C-a> :Ack! --asm --cpp --cc --pgen --follow "<C-r><C-W>"<Left>
 nnoremap <leader>t :TlistToggle<CR><C-h><C-h>
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
@@ -121,8 +123,8 @@ tnoremap <C-o> <C-\><C-N>
 tnoremap <Esc> <C-\><C-N>
 
 " Windows Linux Subsystem
-if !has("clipboard") && executable("clip.exe")
-  noremap <silent><C-Ins> :call system('clip.exe', GetSelectedText())<CR>
+if executable("clip.exe")
+  vmap <C-y> :call system('clip.exe', GetSelectedText())<CR>
 endif
 
 nnoremap <leader>m :ts<CR>
