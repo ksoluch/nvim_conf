@@ -16,6 +16,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'kana/vim-operator-user'
 Plug 'rhysd/vim-clang-format'
 Plug 'brookhong/cscope.vim'
+Plug 'dkprice/vim-easygrep'
 
 call plug#end()
 
@@ -53,6 +54,9 @@ set colorcolumn=80
 set tw=80
 
 let @h=getcwd()
+	
+let g:EasyGrepMode=1
+nnoremap <leader>g :Grep 
 
 nnoremap <silent><leader>0 : set norelativenumber<CR>
 nnoremap <silent><leader>9 : set relativenumber<CR>
@@ -65,6 +69,7 @@ nnoremap <silent><leader>3 :q<CR>
 nnoremap <silent><leader>n :NERDTreeToggle<CR>
 nnoremap <silent><leader>N :NERDTreeFind<CR>
 nnoremap <silent><leader>B :CommandTBuffer<CR>
+nnoremap <silent><leader>b :CtrlPBuffer<CR>
 nnoremap <silent><leader>w :CommandTLine<CR>
 nnoremap <silent><leader>W :CommandTTag<CR>
 nnoremap <silent><leader>f :CommandT<CR>
