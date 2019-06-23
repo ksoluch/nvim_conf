@@ -50,41 +50,48 @@ set relativenumber
 set foldmethod=indent
 set foldlevel=1000
 set cursorline
-set colorcolumn=80
-set tw=80
+set colorcolumn=120
+set tw=120
 
 let @h=getcwd()
 	
 let g:EasyGrepMode=1
 nnoremap <leader>g :Grep 
 
-nnoremap <silent><leader>0 : set norelativenumber<CR>
-nnoremap <silent><leader>9 : set relativenumber<CR>
-nnoremap <silent><leader>5 : set diffopt+=iwhite<CR>
+nnoremap <leader>1 :w!<CR>
+nnoremap <leader>3 :q<CR>
+nnoremap <leader>5 :e %<CR>
+nnoremap <leader>7 :terminal<CR>a
+nnoremap <leader>9 :set relativenumber<CR>
+nnoremap <leader>0 :set norelativenumber<CR>
+
 nnoremap <silent><leader>p :call system('clip.exe', expand("%:p"))<CR>
 nnoremap <silent><leader>P :call system('clip.exe', expand("%:p"))<CR>
 nnoremap <silent><leader><C-p> :call system('clip.exe', expand("%:p:h"))<CR>
-nnoremap <silent><leader>1 :w!<CR>
-nnoremap <silent><leader>3 :q<CR>
+
 nnoremap <silent><leader>n :NERDTreeToggle<CR>
 nnoremap <silent><leader>N :NERDTreeFind<CR>
-nnoremap <silent><leader>B :CommandTBuffer<CR>
-nnoremap <silent><leader>b :CtrlPBuffer<CR>
+
+nnoremap <silent><leader>b :CommandTBuffer<CR>
 nnoremap <silent><leader>w :CommandTLine<CR>
 nnoremap <silent><leader>W :CommandTTag<CR>
 nnoremap <silent><leader>f :CommandT<CR>
+
 nnoremap <silent><leader>A :Ack! --asm --cpp --cc --pgen --follow <C-r><C-W><CR>
 nnoremap <leader>a :Ack! --asm --cpp --cc --pgen --follow ""<Left>
 nnoremap <leader><C-a> :Ack! --asm --cpp --cc --pgen --follow "<C-r><C-W>"<Left>
+
 nnoremap <leader>t :TlistToggle<CR><C-h><C-h>
+
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 nnoremap <C-x> <C-W>c
+
 nnoremap <silent>= o<Esc><Esc>
 nnoremap <silent>- O<Esc><Esc>
-nnoremap <silent><C-s> s<Esc><Esc>
+nnoremap <silent><C-s> s<Esc><Right><Esc>
 nnoremap <silent><leader>[ :vertical resize -5<CR>
 nnoremap <silent><leader>] :vertical resize +5<CR>
 nnoremap <silent><leader>+ :resize +5<CR>
@@ -110,22 +117,19 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 "let g:clang_format#command = "clang-format-3.8"
-let g:clang_format#code_style = "Mozilla"
+let g:clang_format#code_style = "Chromium"
  
 vmap <silent>= :ClangFormat<CR>
 nmap <silent><leader>= :<C-u>ClangFormat<CR>
 
-" refresh the content of the current file
-nnoremap  <leader>5 :e %<CR>
-
-"Neovim terminal
-nnoremap  <leader>7 :terminal<CR>a
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
 tnoremap <C-o> <C-\><C-N>
 tnoremap <Esc> <C-\><C-N>
+
+nnoremap <leader>H :%!xxd<CR>
 
 " Windows Linux Subsystem
 if executable("clip.exe")
