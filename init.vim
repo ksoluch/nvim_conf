@@ -16,7 +16,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'kana/vim-operator-user'
 Plug 'rhysd/vim-clang-format'
 Plug 'brookhong/cscope.vim'
-Plug 'dkprice/vim-easygrep'
+Plug 'mhinz/vim-grepper'
 
 call plug#end()
 
@@ -55,8 +55,16 @@ set tw=120
 
 let @h=getcwd()
 	
-let g:EasyGrepMode=1
-nnoremap <leader>g :Grep 
+"let g:EasyGrepMode=1
+"nnoremap <leader>g :Grep 
+"nnoremap <silent><leader>D :g/<C-r><C-W><CR>
+"nmap <leader>d :g/
+
+nmap <leader>d :Grepper -tool grep<cr>
+nmap <leader>D :Grepper -tool grep -cword<cr>
+
+nnoremap <leader>g :Grepper -tool grep -buffer<cr>
+nnoremap <leader>G :Grepper -tool grep -buffers<cr>
 
 nnoremap <leader>1 :w!<CR>
 nnoremap <leader>3 :q<CR>
@@ -77,9 +85,9 @@ nnoremap <silent><leader>w :CommandTLine<CR>
 nnoremap <silent><leader>W :CommandTTag<CR>
 nnoremap <silent><leader>f :CommandT<CR>
 
-nnoremap <silent><leader>A :Ack! --asm --cpp --cc --pgen --follow <C-r><C-W><CR>
-nnoremap <leader>a :Ack! --asm --cpp --cc --pgen --follow ""<Left>
-nnoremap <leader><C-a> :Ack! --asm --cpp --cc --pgen --follow "<C-r><C-W>"<Left>
+nnoremap <silent><leader>A :Ack! --asm --cpp --cc --pgen --follow --lsl --def <C-r><C-W><CR>
+nnoremap <leader>a :Ack! --asm --cpp --cc --pgen --follow --lsl --def ""<Left>
+nnoremap <leader><C-a> :Ack! --asm --cpp --cc --pgen --follow --lsl --def "<C-r><C-W>"<Left>
 
 nnoremap <leader>t :TlistToggle<CR><C-h><C-h>
 
@@ -103,8 +111,6 @@ nnoremap <silent><leader>s mm:split %<CR>'m
 nnoremap <silent><leader>R :tabe %<CR>
 nnoremap <silent><leader>V :vsplit %<CR>
 nnoremap <silent><leader>S :split %<CR>
-nnoremap <silent><leader>D :g/<C-r><C-W><CR>
-nmap <leader>d :g/
 nnoremap * *N
 nnoremap <silent><leader>* :nohlsearch<CR>
 nnoremap <leader><leader> <C-^>
