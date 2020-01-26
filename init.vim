@@ -17,6 +17,7 @@ Plug 'kana/vim-operator-user'
 Plug 'rhysd/vim-clang-format'
 Plug 'brookhong/cscope.vim'
 Plug 'mhinz/vim-grepper'
+Plug 'CoatiSoftware/vim-sourcetrail'
 
 call plug#end()
 
@@ -52,6 +53,11 @@ set foldlevel=1000
 set cursorline
 set colorcolumn=120
 set tw=120
+
+let g:sourcetrail_autostart=1
+let g:sourcetrail_ip="localhost"
+let g:sourcetrail_to_vim_port=6666
+let g:vim_to_sourcetrail_port=6667
 
 let @h=getcwd()
 	
@@ -134,6 +140,12 @@ tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
 tnoremap <C-o> <C-\><C-N>
 tnoremap <Esc> <C-\><C-N>
+
+nnoremap <leader>y :SourcetrailActivateToken<CR>
+nnoremap <leader>u :SourcetrailRefresh<CR>
+nnoremap <leader>Y :SourcetrailStartServer<CR>
+nnoremap <leader>U :SourcetrailStopServer<CR>
+
 
 nnoremap <leader>H :%!xxd<CR>
 
