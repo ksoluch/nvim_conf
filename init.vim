@@ -18,6 +18,8 @@ Plug 'rhysd/vim-clang-format'
 Plug 'brookhong/cscope.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'CoatiSoftware/vim-sourcetrail'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -86,10 +88,15 @@ nnoremap <silent><leader><C-p> :call system('clip.exe', expand("%:p:h"))<CR>
 nnoremap <silent><leader>n :NERDTreeToggle<CR>
 nnoremap <silent><leader>N :NERDTreeFind<CR>
 
-nnoremap <silent><leader>b :CommandTBuffer<CR>
-nnoremap <silent><leader>w :CommandTLine<CR>
-nnoremap <silent><leader>W :CommandTTag<CR>
-nnoremap <silent><leader>f :CommandT<CR>
+" nnoremap <silent><leader>b :CommandTBuffer<CR>
+" nnoremap <silent><leader>w :CommandTLine<CR>
+" nnoremap <silent><leader>W :CommandTTag<CR>
+" nnoremap <silent><leader>f :CommandT<CR>
+
+nnoremap <silent><leader>b :Buffers<CR>
+nnoremap <silent><leader>W :BLines<CR>
+nnoremap <silent><leader>w :BTags<CR>
+nnoremap <silent><leader>f :Files<CR>
 
 nnoremap <silent><leader>A :Ack! --asm --cpp --cc --pgen --follow --lsl --def <C-r><C-W><CR>
 nnoremap <leader>a :Ack! --asm --cpp --cc --pgen --follow --lsl --def ""<Left>
