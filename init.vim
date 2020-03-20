@@ -81,8 +81,11 @@ nnoremap <leader>7 :terminal<CR>a
 nnoremap <leader>9 :set relativenumber<CR>
 nnoremap <leader>0 :set norelativenumber<CR>
 
-nnoremap <silent><leader>p :call system('clip.exe', expand("%:p"))<CR>
+" % should return the file name but it doesn't work - :t splits on /, the outcome looks similar to how % should work
+nnoremap <silent><leader>p :call system('clip.exe', expand("%:t"))<CR>
+" %:p full path
 nnoremap <silent><leader>P :call system('clip.exe', expand("%:p"))<CR>
+" %:p:h the dir that holds the current file
 nnoremap <silent><leader><C-p> :call system('clip.exe', expand("%:p:h"))<CR>
 
 nnoremap <silent><leader>n :NERDTreeToggle<CR>
@@ -92,17 +95,22 @@ nnoremap <silent><leader>N :NERDTreeFind<CR>
 " nnoremap <silent><leader>w :CommandTLine<CR>
 " nnoremap <silent><leader>W :CommandTTag<CR>
 " nnoremap <silent><leader>f :CommandT<CR>
+" nnoremap <leader>t :TlistToggle<CR><C-h><C-h>
+" nnoremap <leader>m :ts<CR>
 
 nnoremap <silent><leader>b :Buffers<CR>
-nnoremap <silent><leader>W :BLines<CR>
-nnoremap <silent><leader>w :BTags<CR>
+nnoremap <silent><leader>m :Marks<CR>
+nnoremap <silent><leader>w :BLines<CR>
+nnoremap <silent><leader>W :Lines<CR>
+nnoremap <silent><leader>t :BTags<CR>
+nnoremap <silent><leader>T :Tags<CR>
 nnoremap <silent><leader>f :Files<CR>
+nnoremap <silent><leader>F :Files %:p:h<CR>
 
 nnoremap <silent><leader>A :Ack! --asm --cpp --cc --pgen --follow --lsl --def <C-r><C-W><CR>
 nnoremap <leader>a :Ack! --asm --cpp --cc --pgen --follow --lsl --def ""<Left>
 nnoremap <leader><C-a> :Ack! --asm --cpp --cc --pgen --follow --lsl --def "<C-r><C-W>"<Left>
 
-nnoremap <leader>t :TlistToggle<CR><C-h><C-h>
 
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
@@ -160,5 +168,3 @@ nnoremap <leader>H :%!xxd<CR>
 if executable("clip.exe")
   vmap <C-y> :call system('clip.exe', GetSelectedText())<CR>
 endif
-
-nnoremap <leader>m :ts<CR>
