@@ -8,6 +8,7 @@ alias file='find . -type f -name '
 alias vf='~/scripts/vgrep.sh'
 alias kdiff='/mnt/c/Program\ Files/KDiff3/kdiff3.exe'
 alias vs='rm -rf ~/.local/share/nvim/swap/*'
+alias find='find -L'
 
 function ta ()
 {
@@ -15,12 +16,19 @@ function ta ()
   ctags -R --languages=c,c++ --extra=+f
 }
 
-ulimit -c unlimited
+function eta ()
+{
+  rm -rf tags
+  ctags -e --languages=c,c++ --extra=+f+q -R 
+}
 
-cd
+ulimit -c unlimited
 
 if [[ ! $TERM =~ screen ]]; then
     tmux
 fi
 
 clear
+
+export DISPLAY=:0
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
