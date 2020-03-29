@@ -164,7 +164,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
@@ -306,9 +306,13 @@ values."
 
 (defun dotspacemacs/user-config ()
 
-  ;; Load evil-replace-with-register addon
+  ;; evil-replace-with-register addon
   (load-file "~/.spacemacs_addons/evil-replace-with-register.el")
   (evil-replace-with-register-install)
+
+  (define-key evil-normal-state-map (kbd "M-s") 'avy-goto-char)
+  (define-key evil-normal-state-map (kbd "M-w") 'avy-goto-word-1)
+  (define-key evil-motion-state-map (kbd "M-w") 'avy-goto-word-1)
 
   )
 
