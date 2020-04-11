@@ -39,7 +39,8 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     c-c++
+     (c-c++ :variables
+            c-c++-enable-clang-support t)
      cscope
      auto-completion
      ;; better-defaults
@@ -51,8 +52,8 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
+     spell-checking
+     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -131,8 +132,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(spacemacs-light
+                         spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -301,6 +302,9 @@ values."
 (defun dotspacemacs/user-init ()
 
   (setq projectile-project-search-path '("/mnt/c/aptiv/wa"))
+  ;; Include _ as in 'w' and 'b', like in VIM.
+  (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "b")))
+  (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
   )
 
@@ -310,7 +314,9 @@ values."
   (load-file "~/.spacemacs_addons/evil-replace-with-register.el")
   (evil-replace-with-register-install)
 
+
   (define-key evil-normal-state-map (kbd "M-s") 'avy-goto-char)
+  (define-key evil-motion-state-map (kbd "M-s") 'avy-goto-char)
   (define-key evil-normal-state-map (kbd "M-w") 'avy-goto-word-1)
   (define-key evil-motion-state-map (kbd "M-w") 'avy-goto-word-1)
 
@@ -325,7 +331,7 @@ values."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit git-commit with-editor transient xterm-color web-mode tagedit slim-mode shell-pop scss-mode sass-mode pug-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize helm-css-scss helm-cscope xcscope helm-company helm-c-yasnippet haml-mode gnuplot fuzzy eshell-z eshell-prompt-extras esh-help emmet-mode disaster company-web web-completion-data company-statistics company-c-headers company-auctex company cmake-mode clang-format auto-yasnippet yasnippet auctex ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit git-commit with-editor transient xterm-color web-mode tagedit slim-mode shell-pop scss-mode sass-mode pug-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download multi-term htmlize helm-css-scss helm-cscope xcscope helm-company helm-c-yasnippet haml-mode gnuplot fuzzy eshell-z eshell-prompt-extras esh-help emmet-mode disaster company-web web-completion-data company-statistics company-c-headers company-auctex company cmake-mode clang-format auto-yasnippet yasnippet auctex ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
