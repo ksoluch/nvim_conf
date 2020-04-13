@@ -40,7 +40,8 @@ values."
      ;; ----------------------------------------------------------------
      helm
      (c-c++ :variables
-            c-c++-enable-clang-support t)
+            c-c++-enable-clang-support t
+            c-c++-default-mode-for-headers 'c++-mode)
      cscope
      auto-completion
      ;; better-defaults
@@ -53,7 +54,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
-     syntax-checking
+     ;;syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -313,7 +314,7 @@ values."
   ;; evil-replace-with-register addon
   (load-file "~/.spacemacs_addons/evil-replace-with-register.el")
   (evil-replace-with-register-install)
-
+  ( setq-default evil-escape-delay 0.2)
 
   (define-key evil-normal-state-map (kbd "M-s") 'avy-goto-char)
   (define-key evil-motion-state-map (kbd "M-s") 'avy-goto-char)
